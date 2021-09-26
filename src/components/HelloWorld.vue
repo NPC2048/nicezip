@@ -1,41 +1,46 @@
 <template>
   <div class="hello">
+    <n-space vertical>
+      <n-input v-model:value="value" type="text" rows="4">
+        <template #prefix>
+          [root@vmhost {{currDir}}]#
+        </template>
+      </n-input>
+
+      <n-upload action="https://www.mocky.io/v2/5e4bafc63100007100d8b70f">
+        <n-upload-dragger>
+          <div style="margin-bottom: 12px;">
+            <n-icon size="48" :depth="3">
+              <archive-icon />
+            </n-icon>
+          </div>
+          <n-text style="font-size: 16px;">点击或者拖动文件到该区域来上传</n-text>
+          <n-p depth="3" style="margin: 8px 0 0 0;"
+            >请不要上传敏感数据，比如你的银行卡号和密码，信用卡号有效期和安全码</n-p
+          >
+        </n-upload-dragger>
+      </n-upload>
+    </n-space>
     <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
   </div>
 </template>
 
 <script>
+import {NInput, NSpace, NUpload, NUploadDragger, NText, NP, NIcon} from 'naive-ui';
+import {ref} from 'vue';
+import {ArchiveOutline as ArchiveIcon} from '@vicons/ionicons5'
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
-  }
+  },
+  setup() {
+    return {
+      value: ref(null),
+      currDir: ref('~')
+    }
+  },
+  components: {NInput, NSpace, ArchiveIcon, NUpload, NUploadDragger, NText, NP, NIcon}
 }
 </script>
 
